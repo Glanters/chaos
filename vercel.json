@@ -13,26 +13,22 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/public/index.html"
+      "source": "/",
+      "destination": "/public/index.html"
     },
     {
-      "src": "/game",
-      "dest": "/public/game.html"
+      "source": "/game",
+      "destination": "/public/game.html"
     },
     {
-      "src": "/(.*\\.(css|js|html|ico|png|jpg|svg))",
-      "dest": "/public/$1"
+      "source": "/api/health",
+      "destination": "/api/socket"
     },
     {
-      "src": "/socket.io/(.*)",
-      "dest": "/api/socket"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/socket"
+      "source": "/socket.io/(.*)",
+      "destination": "/api/socket"
     }
   ],
   "headers": [
@@ -42,7 +38,20 @@
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/public/(.*\\.(css|js))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/public/(.*\\.(ico|png|jpg|jpeg|svg|gif))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
