@@ -1,0 +1,31 @@
+{
+  "name": "chaos-collaboration-vercel",
+  "version": "1.0.0",
+  "description": "Game multiplayer dengan peran rahasia - Optimized for Vercel",
+  "type": "module",
+  "main": "api/socket.js",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "scripts": {
+    "start": "node api/socket.js",
+    "dev": "nodemon api/socket.js",
+    "vercel-build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.0",
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "game",
+    "multiplayer",
+    "socket.io",
+    "vercel"
+  ],
+  "author": "Chaos Game Team",
+  "license": "MIT"
+}
